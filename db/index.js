@@ -1,6 +1,8 @@
 const { Client } = require("pg");
-const client = new Client("postgres://localhost:5432/juicebox-dev");
-
+require("dotenv").config();
+const client = new Client(
+  process.env.DATABASE_URL || "postgres://localhost:5432/juicebox-dev"
+);
 //Tag functions live here
 async function createTags(tagList) {
   if (tagList.length === 0) {
