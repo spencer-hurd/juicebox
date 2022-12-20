@@ -7,7 +7,7 @@
     "build": "webpack",
     "seed": "node ./db/seed.js",
     "seed:dev": "nodemon ./db/seed.js",
-    "start": "node index.js",
+    "start": "node index.js --unhandled-rejections=strict",
     "start:dev": "nodemon index.js"
   },
   "keywords": [],
