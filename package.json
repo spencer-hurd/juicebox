@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build" :"webpack",
     "seed:dev": "nodemon ./db/seed.js",
     "start": "node index.js",
     "start:dev": "nodemon index.js"
@@ -14,9 +15,11 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "heroku": "^7.67.1",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
-    "pg": "^8.8.0"
+    "pg": "^8.8.0",
+    "webpack": "^5.75.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
