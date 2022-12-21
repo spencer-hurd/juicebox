@@ -2,14 +2,15 @@ function requireUser(req, res, next) {
   if (!req.user) {
     next({
       name: "MissingUserError",
-      message: "You must be logged in to perform this action",
+      message: "You must be logged in to perform this action.",
     });
   }
 
   next();
 }
 
-function requireActiveUser(req, res, next) {
+async function requireActiveUser(req, res, next) {
+  await requireUser;
   if (!req.user.active) {
     next({
       name: "InactiveUserError",
