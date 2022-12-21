@@ -3,7 +3,7 @@ const server = express();
 const apiRouter = require("./api");
 const morgan = require("morgan");
 require("dotenv").config();
-const PORT = process.env.PORT;
+const PORT = 3000;
 server.use(morgan("dev"));
 const { client } = require("./db");
 client.connect();

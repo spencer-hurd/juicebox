@@ -1,7 +1,7 @@
 const { Client } = require("pg");
 require("dotenv").config();
 const client = new Client(
-  process.env.DATABASE_URL //|| "postgres://localhost:5432/juicebox-dev"
+  process.env.DATABASE_URL || "postgres://localhost:5432/juicebox-dev"
 );
 //Tag functions live here
 async function createTags(tagList) {

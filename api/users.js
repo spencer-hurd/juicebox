@@ -1,6 +1,13 @@
 const express = require("express");
 const usersRouter = express.Router();
-const { getAllUsers, getUserByUsername, createUser } = require("../db");
+const {
+  getAllUsers,
+  getUserByUsername,
+  createUser,
+  getUserById,
+  updateUser,
+} = require("../db");
+const { requireUser } = require("./utils");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
@@ -85,6 +92,31 @@ usersRouter.post("/register", async (req, res, next) => {
       message: "thank you for signing up",
       token,
     });
+  } catch ({ name, message }) {
+    next({ name, message });
+  }
+});
+
+usersRouter.delete("/:userId", requireUser, async (req, res, next) => {
+  try {
+    const user = await getUserById(req.params.userId);
+
+    if (user && user.id === req.user.id) {
+      const updatedUser = await updateUser(user.id, { active: false });
+      res.send({ post: updatedUser });
+    } else {
+      next(
+        post
+          ? {
+              name: "UnauthorizedUserError",
+              message: "You cannot delete someone else's profile.",
+            }
+          : {
+              name: "UserNotFoundError",
+              message: "That user does not exist.",
+            }
+      );
+    }
   } catch ({ name, message }) {
     next({ name, message });
   }
