@@ -10,7 +10,7 @@ function requireUser(req, res, next) {
 }
 
 async function requireActiveUser(req, res, next) {
-  await requireUser;
+  await requireUser();
   if (!req.user.active) {
     next({
       name: "InactiveUserError",
